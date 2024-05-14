@@ -1,14 +1,16 @@
-const url = require("url");
-
-const BookModel = require("./../models/book");
-
-const getAll = async (req,res)=>{
-  const books = await BookModel.find();
-  res.writeHead(200, { "Content-Type": "application/json" })
-  res.write(books)
-  res.end()
-}
-
-module.exports = {
-  getAll
+const bookModel = require("../models/book");
+const Validator = require("../validator/booksValidator");
+exports.create = async (req,res) =>{
+  const validatorRes = Validator(req.body);
+  if (validatorRes !== true) {
+    res.status(422).json(validatorRes);
+  }
+  let { name, outer } = req.body;
+  bookModel.create({
+    name,
+    outer,
+  });
+  res.status(200).json({
+    massage: "user created",
+  });
 }
