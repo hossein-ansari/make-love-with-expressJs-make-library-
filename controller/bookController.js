@@ -31,3 +31,31 @@ exports.getOne = async (req, res) => {
   }
   res.status(200).json(book);
 };
+exports.deleteOne = async (req, res) => {
+  const { id } = req.params;
+  const idValidator = isValidObjectId(id);
+  if (!idValidator) {
+    return res.status(404).json({ error: "Book not found" });
+  }
+  const book = await bookModel.findOneAndDelete(id);
+  if (!book) {
+    return res.status(404).json({ error: "Book not found" });
+  }
+  res.status(200).json(book);
+};
+exports.updateOne = async (req, res) => {
+  const { id } = req.params;
+  const { name , outer } = req.body;
+  const idValidator = isValidObjectId(id);
+  if (!idValidator) {
+    return res.status(404).json({ error: "Book not found" });
+  }
+  const book = await bookModel.findByIdAndUpdate(id,{
+    name : name,
+    outer : outer,
+  });
+  if (!book) {
+    return res.status(404).json({ error: "Book not found" });
+  }
+  res.status(200).json(book);
+};

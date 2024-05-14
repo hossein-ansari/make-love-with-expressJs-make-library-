@@ -7,8 +7,8 @@ const userController = require('../controller/bookController')
 booksRouters.post("/create",userController.create )
 booksRouters.get("/getOne/:id",userController.getOne )
 booksRouters.get("/getAll",userController.getAll )
-// booksRouters.delete("/deleteOne",userController.deleteOne )
-// booksRouters.delete("/updateOne",userController.updateOne )
+booksRouters.delete("/deleteOne/:id",userController.deleteOne )
+booksRouters.put("/updateOne/:id",userController.updateOne )
 
 
 module.exports = booksRouters;
