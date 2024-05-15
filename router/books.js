@@ -1,14 +1,11 @@
 const express = require("express");
 const booksRouters = express.Router();
-const bookModel = require("../models/book");
-const Validator = require("../validator/booksValidator");
-const userController = require('../controller/bookController')
+const bookController = require('../controller/bookController')
 
-booksRouters.post("/create",userController.create )
-booksRouters.get("/getOne/:id",userController.getOne )
-booksRouters.get("/getAll",userController.getAll )
-booksRouters.delete("/deleteOne/:id",userController.deleteOne )
-booksRouters.put("/updateOne/:id",userController.updateOne )
-
+booksRouters.post("/create",bookController.create )
+booksRouters.get("/getOne/:id",bookController.getOne )
+booksRouters.get("/getAll",bookController.getAll )
+booksRouters.delete("/deleteOne/:id",bookController.deleteOne )
+booksRouters.put("/updateOne/:id",bookController.updateOne )
 
 module.exports = booksRouters;

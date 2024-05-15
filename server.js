@@ -4,10 +4,14 @@ require("./db");
 const bookModel = require("./models/book");
 const Validator = require("./validator/booksValidator");
 const bookRouter = require('./router/books')
+const usersRouter = require('./router/users')
+
 app.use(express.json());
 
 
 app.use('/books/',bookRouter)
+app.use('/users/',usersRouter)
+
 
 
 
