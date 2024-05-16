@@ -26,7 +26,7 @@ exports.getOne = async (req, res) => {
   res.status(200).json(user);
 };
 exports.getAll = async (req, res) => {
-  const user = await userModel.find({});
+  const user = await userModel.find({}).populate();
   if (!user) {
     res.status(404).json(isValidId);
   }
